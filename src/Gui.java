@@ -15,7 +15,7 @@ public class Gui extends JFrame implements ActionListener {
     static int value;//value to send to server
     PrintWriter sockOut;
     Color originalColor;//the default color of the button
-    private JButton[][] buttonGrid;
+    private final JButton[][] buttonGrid;
     //private String fromServer;
     static boolean firstFlag=false;
     static boolean secondFlag=false;
@@ -54,14 +54,14 @@ public class Gui extends JFrame implements ActionListener {
         //creating the game board
         GridLayout grid = new GridLayout(7,7,1,1);
         JPanel panel = new JPanel(grid);
-        panel.setLayout(new BorderLayout());
+//        panel.setLayout(new BorderLayout());
         //adds a button for each spot on the grid
         for (int i = 0; i < 7 ; i++) {
             for (int j = 0; j < 7; j++) {
                 JButton button;
                 if (i == 0){// the top row is the clickable buttons with the column number on it
                     button = new JButton(""  + j + "");
-                    button.setPreferredSize(new Dimension(30, 30));
+                    button.setPreferredSize(new Dimension(20, 20));
                     buttonGrid[i][j] = button; // specific button is saved to the grid
                     panel.add(button);//button added to panel
                     int finalJ = j;// col number
@@ -92,7 +92,7 @@ public class Gui extends JFrame implements ActionListener {
                     });
                 }else{//buttons (non-clickable) for the rest of the grid (6x7) 
                     button = new JButton();
-                    button.setPreferredSize(new Dimension(30, 30)); // Set button size
+                    button.setPreferredSize(new Dimension(20, 20)); // Set button size
                     button.setEnabled(false);
                     button.setOpaque(true);
                     buttonGrid[i][j] = button;
@@ -112,13 +112,13 @@ public class Gui extends JFrame implements ActionListener {
                 remove(startScreen);
             }
             if (firstFlag && secondFlag) {
+                remove(startScreen);
                 add(panel);
 
 
                 pack();
                 setLocationRelativeTo(null);
                 setVisible(true);
-                remove(startScreen);
             }
 
         });
@@ -143,7 +143,7 @@ public class Gui extends JFrame implements ActionListener {
                 if (fromServer.equals("Now connected, waiting for player 2...")){
                     System.out.println("yurrr");
                     firstFlag = true;
-                    panel.add(sidePanel,BorderLayout.EAST);
+//                    panel.add(sidePanel,BorderLayout.EAST);
 
                 }
                 if (fromServer.equals("Now connected, Game about to start...") || fromServer.equals("Welcome to CONNECT4: You are player 1")) {

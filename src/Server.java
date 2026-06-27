@@ -5,7 +5,7 @@ public class Server {
     public static void main(String[] args) {
         int portNumber = 1024;
         try (
-                ServerSocket serverSocket = new ServerSocket(portNumber);
+                ServerSocket serverSocket = new ServerSocket(portNumber)
         ) {
             while (true) {
                 Socket client1=serverSocket.accept();

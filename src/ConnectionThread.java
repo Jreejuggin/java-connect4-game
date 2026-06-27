@@ -7,7 +7,8 @@ import java.io.*;
  * @version 1.0 (Apr. 2024)                                                        */
 //this class manages the connection between the two clients
 public class ConnectionThread extends Thread{
-    private Socket client1,client2;
+    private final Socket client1;
+    private final Socket client2;
 
     public ConnectionThread(Socket c1, Socket c2) {
         client1=c1; client2=c2;
@@ -18,7 +19,7 @@ public class ConnectionThread extends Thread{
                 PrintWriter out1 = new PrintWriter(client1.getOutputStream(), true);
                 PrintWriter out2 = new PrintWriter(client2.getOutputStream(), true);
                 BufferedReader in1 = new BufferedReader(new InputStreamReader(client1.getInputStream()));
-                BufferedReader in2 = new BufferedReader(new InputStreamReader(client2.getInputStream()));
+                BufferedReader in2 = new BufferedReader(new InputStreamReader(client2.getInputStream()))
         ) {
             String inputLine;
             out1.println("Welcome to CONNECT4: You are player 1");
